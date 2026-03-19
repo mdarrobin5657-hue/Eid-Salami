@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>সালামি চাই – Eid with Robin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green:  #b01020;
+      --green2: #1a3eb8;
+      --gold:   #e8c400;
+      --goldf:  #ffe44d;
+      --cream:  #fdf6e3;
+      --creamd: #f0dfa8;
+      --text:   #1a2e00;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+    body {
+      min-height:100vh;
+      background: #0d0d2b;
+      background-image:
+        radial-gradient(ellipse at 15% 20%, rgba(176,16,32,.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 80%, rgba(26,62,184,.25) 0%, transparent 55%);
+      font-family: 'Noto Sans Bengali', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px 60px;
+      overflow-x: hidden;
+    }
+
+    /* ── floating stars ── */
+    .bg-star {
+      position: fixed;
+      pointer-events: none;
+      color: var(--goldf);
+      opacity: .15;
+      font-size: 1.3rem;
+      animation: fstar 7s ease-in-out infinite;
+    }
+    .bg-star:nth-child(1){ top:6%;  left:5%;  animation-delay:0s; }
+    .bg-star:nth-child(2){ top:14%; right:7%; animation-delay:1.8s; font-size:.9rem; }
+    .bg-star:nth-child(3){ top:42%; left:3%;  animation-delay:3.2s; font-size:1.7rem; }
+    .bg-star:nth-child(4){ top:68%; right:4%; animation-delay:1.1s; font-size:1.1rem; }
+    .bg-star:nth-child(5){ top:83%; left:7%;  animation-delay:4s;   font-size:.95rem; }
+    .bg-star:nth-child(6){ top:52%; right:3%; animation-delay:.6s;  font-size:1.5rem; }
+    @keyframes fstar {
+      0%,100%{ transform:translateY(0) rotate(0deg); }
+      50%    { transform:translateY(-16px) rotate(14deg); }
+    }
+
+    /* ── top deco ── */
+    .top-deco {
+      display:flex; align-items:center; gap:14px;
+      margin-bottom:8px;
+      animation: fadedown .7s ease both;
+    }
+    .top-deco span { font-size:2rem; display:inline-block; }
+    .top-deco .swing { animation: swing 3s ease-in-out infinite; }
+    @keyframes swing {
+      0%,100%{ transform:rotate(-8deg); }
+      50%    { transform:rotate(8deg);  }
+    }
+    @keyframes fadedown {
+      from{ opacity:0; transform:translateY(-18px); }
+      to  { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── card ── */
+    .card {
+      width:100%; max-width:500px;
+      background: var(--cream);
+      border-radius:22px;
+      box-shadow:
+        0 0 0 4px var(--gold),
+        0 0 0 8px #1a3eb8,
+        0 28px 70px rgba(0,0,0,.45);
+      overflow:hidden;
+      animation: riseup .85s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes riseup {
+      from{ opacity:0; transform:translateY(36px) scale(.97); }
+      to  { opacity:1; transform:translateY(0)    scale(1);   }
+    }
+
+    /* card header */
+    .card-head {
+      background: linear-gradient(135deg, #b01020 0%, #1a3eb8 65%, #0a0a50 100%);
+      padding: 26px 24px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-head::before {
+      content:'';
+      position:absolute; inset:0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 2l1.8 10.5L42 7l-6 9.5 11 2-11 2 6 9.5-10.2-5.5L30 36l-1.8-11L18 30.5l6-9.5-11-2 11-2-6-9.5L28.2 12.5Z' fill='%23d4a017' fill-opacity='.10'/%3E%3C/svg%3E") repeat;
+    }
+    .card-head .emoji-row { font-size:2rem; margin-bottom:6px; position:relative; }
+    .card-head h1 {
+      font-family:'Noto Serif Bengali', serif;
+      font-size: clamp(1.8rem, 7vw, 2.5rem);
+      font-weight:700;
+      color: var(--goldf);
+      text-shadow: 0 2px 10px rgba(0,0,0,.5), 0 0 28px rgba(212,160,23,.5);
+      letter-spacing:2px;
+      line-height:1.2;
+      position:relative;
+    }
+    .card-head .sub {
+      color:rgba(255,255,255,.8);
+      font-size:.83rem;
+      margin-top:6px;
+      font-style:italic;
+      position:relative;
+    }
+    .card-head .stars-row {
+      color:var(--goldf); opacity:.65;
+      font-size:.85rem; margin-top:10px;
+      letter-spacing:6px;
+      position:relative;
+    }
+
+    /* form body */
+    .form-body { padding:26px 24px 0; }
+
+    .field { margin-bottom:20px; }
+
+    .field label {
+      display:flex; align-items:center; gap:8px;
+      font-family:'Noto Serif Bengali', serif;
+      font-size:.92rem; font-weight:600;
+      color: #8b0000;
+      margin-bottom:8px;
+      cursor:default;
+    }
+    .num {
+      width:26px; height:26px; flex-shrink:0;
+      background: linear-gradient(135deg, #b01020, #1a3eb8);
+      color: var(--goldf);
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:.78rem; font-weight:700;
+      box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    select,
+    textarea {
+      width:100%;
+      padding:13px 15px;
+      border:2px solid var(--creamd);
+      border-radius:11px;
+      background:#fff;
+      font-family:'Noto Sans Bengali', sans-serif;
+      font-size:1rem;
+      color: var(--text);
+      outline:none;
+      -webkit-appearance:none;
+      appearance:none;
+      transition: border-color .2s, box-shadow .2s;
+      /* iPhone fix */
+      -webkit-border-radius:11px;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--green2);
+      box-shadow: 0 0 0 3px rgba(26,62,184,.2);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a5c2e' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right 13px center;
+      padding-right:38px;
+    }
+    textarea { resize:vertical; min-height:88px; line-height:1.6; }
+    input::placeholder, textarea::placeholder { color:#bbb; font-style:italic; }
+
+    /* amount pills */
+    .pills {
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top:10px;
+    }
+    .pill {
+      background: var(--creamd);
+      border:2px solid var(--gold);
+      border-radius:20px;
+      padding:6px 15px;
+      font-size:.83rem;
+      font-family:'Noto Sans Bengali', sans-serif;
+      font-weight:600;
+      color: #6b4c00;
+      cursor:pointer;
+      transition: background .18s, color .18s, transform .1s;
+      /* iPhone: make it a button not a div */
+      -webkit-appearance:none;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    .pill:active, .pill.active {
+      background: var(--gold);
+      color:#fff;
+      transform:scale(1.06);
+    }
+
+    /* submit */
+    .submit-wrap { padding:18px 24px 0; }
+    .btn {
+      width:100%;
+      padding:15px;
+      background: linear-gradient(135deg, #b01020 0%, #1a3eb8 60%, #0a0a50 100%);
+      color: var(--goldf);
+      font-family:'Noto Serif Bengali', serif;
+      font-size:1.1rem;
+      font-weight:700;
+      border:none;
+      border-radius:13px;
+      cursor:pointer;
+      letter-spacing:1px;
+      box-shadow: 0 7px 22px rgba(176,16,32,.4);
+      -webkit-appearance:none;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn:active { transform:scale(.98); opacity:.88; }
+    .btn:disabled { opacity:.6; cursor:default; }
+
+    /* success */
+    .success {
+      display:none;
+      margin:18px 24px 0;
+      background:linear-gradient(135deg,#e6f9ec,#d4f5de);
+      border:2px solid #1a3eb8;
+      border-radius:13px;
+      padding:18px;
+      text-align:center;
+      font-family:'Noto Serif Bengali', serif;
+      font-size:1rem;
+      font-weight:600;
+      color: #8b0000;
+    }
+    .success span { font-size:.82rem; font-weight:400; color:var(--green2); display:block; margin-top:4px; }
+
+    /* spacer at bottom */
+    .card-foot { height:30px; }
+
+    .footer { color:rgba(255,255,255,.4); font-size:.72rem; margin-top:18px; }
+  </style>
+</head>
+<body>
+
+  <span class="bg-star">✦</span>
+  <span class="bg-star">★</span>
+  <span class="bg-star">✦</span>
+  <span class="bg-star">★</span>
+  <span class="bg-star">✦</span>
+  <span class="bg-star">★</span>
+
+  <div class="top-deco">
+    <span class="swing">⭐</span>
+    <span>🌙</span>
+    <span class="swing">⭐</span>
+  </div>
+
+  <div class="card">
+
+    <div class="card-head">
+      <div class="emoji-row">🌙 ⭐ 🌙</div>
+      <h1>সালামি চাই</h1>
+      <p class="sub">Eid with Robin ✨ আপনার সালামির আবেদন করুন</p>
+      <div class="stars-row">✦ ✦ ✦ ✦ ✦</div>
+    </div>
+
+    <div class="form-body">
+
+      <!-- 1. Name -->
+      <div class="field">
+        <label><span class="num">১</span> আপনার নাম কী?</label>
+        <input type="text" id="f_name" placeholder="আপনার পুরো নাম লিখুন…" autocomplete="name"/>
+      </div>
+
+      <!-- 2. Relation -->
+      <div class="field">
+        <label><span class="num">২</span> রবিনের সাথে আপনার সম্পর্ক কী?</label>
+        <select id="f_rel">
+          <option value="" disabled selected>— সম্পর্ক বেছে নিন —</option>
+          <option>চাচা</option>
+          <option>মামা</option>
+          <option>চাচাতো ভাই / বোন</option>
+          <option>মামাতো ভাই / বোন</option>
+          <option>খালাতো ভাই / বোন</option>
+          <option>ফুফাতো ভাই / বোন</option>
+          <option>বউ</option>
+          <option>জুনিয়র</option>
+          <option>সিনিয়র</option>
+          <option>বন্ধু</option>
+          <option>সহপাঠী</option>
+          <option>প্রতিবেশী</option>
+          <option>অন্যান্য</option>
+        </select>
+      </div>
+
+      <!-- 3. Amount -->
+      <div class="field">
+        <label><span class="num">৩</span> কত টাকা সালামি চান?</label>
+        <input type="number" id="f_amount" placeholder="পরিমাণ লিখুন (টাকায়)…" min="1" inputmode="numeric"/>
+        <div class="pills" id="pills">
+          <button type="button" class="pill" data-v="50">৳ ৫০</button>
+          <button type="button" class="pill" data-v="100">৳ ১০০</button>
+          <button type="button" class="pill" data-v="200">৳ ২০০</button>
+          <button type="button" class="pill" data-v="500">৳ ৫০০</button>
+          <button type="button" class="pill" data-v="1000">৳ ১০০০</button>
+        </div>
+      </div>
+
+      <!-- 4. Mobile -->
+      <div class="field">
+        <label><span class="num">৪</span> নগদ / বিকাশ নম্বর</label>
+        <input type="tel" id="f_mobile" placeholder="01xxxxxxxxx" maxlength="11" inputmode="numeric" autocomplete="tel"/>
+      </div>
+
+      <!-- 5. Reason -->
+      <div class="field">
+        <label><span class="num">৫</span> কেন সালামি পাওয়ার যোগ্য মনে করেন?</label>
+        <textarea id="f_reason" placeholder="আপনার কারণ বলুন… (যত ভালো কারণ, তত বেশি সম্ভাবনা! 😄)"></textarea>
+      </div>
+
+    </div>
+
+    <div class="submit-wrap">
+      <button class="btn" id="submitBtn" type="button" onclick="doSubmit()">
+        🌙 সালামি চাই ⭐
+      </button>
+    </div>
+
+    <div class="success" id="successBox">
+      🎉 ঈদ মুবারক! আপনার আবেদন পাঠানো হয়েছে!
+      <span>আল্লাহ কবুল করুন 🌙</span>
+    </div>
+
+    <div class="card-foot"></div>
+  </div>
+
+  <p class="footer">🌙 ঈদুল ফিতর • Eid with Robin ✦</p>
+
+  <!-- Native HTML form — works on ALL devices including iPhone Safari -->
+  <form id="realForm"
+        action="https://formspree.io/f/xjgajokz"
+        method="POST"
+        style="display:none">
+    <input type="hidden" id="h_name"   name="নাম"/>
+    <input type="hidden" id="h_rel"    name="সম্পর্ক"/>
+    <input type="hidden" id="h_amount" name="সালামি"/>
+    <input type="hidden" id="h_mobile" name="মোবাইল"/>
+    <input type="hidden" id="h_reason" name="কারণ"/>
+    <input type="hidden" name="_next"  value="?sent=1"/>
+    <input type="hidden" name="_subject" value="🌙 নতুন সালামির আবেদন – Eid with Robin"/>
+  </form>
+
+  <script>
+    // ── pill select (works on iPhone) ──
+    document.querySelectorAll('.pill').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+        pill.classList.add('active');
+        document.getElementById('f_amount').value = pill.getAttribute('data-v');
+      });
+    });
+
+    document.getElementById('f_amount').addEventListener('input', function() {
+      document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+    });
+
+    // ── show success if redirected back with ?sent=1 ──
+    if (window.location.search.indexOf('sent=1') !== -1) {
+      document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+      burst();
+    }
+
+    // ── submit ──
+    function doSubmit() {
+      var name   = document.getElementById('f_name').value.trim();
+      var rel    = document.getElementById('f_rel').value;
+      var amount = document.getElementById('f_amount').value.trim();
+      var mobile = document.getElementById('f_mobile').value.trim();
+      var reason = document.getElementById('f_reason').value.trim();
+
+      if (!name || !rel || !amount || !mobile || !reason) {
+        alert('অনুগ্রহ করে সকল তথ্য পূরণ করুন! 🌙');
+        return;
+      }
+      if (!/^01[3-9]\d{8}$/.test(mobile)) {
+        alert('সঠিক মোবাইল নম্বর দিন (১১ সংখ্যা)।');
+        return;
+      }
+
+      document.getElementById('h_name').value   = name;
+      document.getElementById('h_rel').value    = rel;
+      document.getElementById('h_amount').value = amount + ' টাকা';
+      document.getElementById('h_mobile').value = mobile;
+      document.getElementById('h_reason').value = reason;
+
+      var btn = document.getElementById('submitBtn');
+      btn.textContent = '⏳ পাঠানো হচ্ছে…';
+      btn.disabled = true;
+
+      document.getElementById('realForm').submit();
+    }
+
+    // ── confetti ──
+    function burst() {
+      var colors = ['#d4a017','#f5d060','#2e8b57','#ffffff','#ffdd57'];
+      for (var i = 0; i < 55; i++) {
+        (function() {
+          var dot = document.createElement('div');
+          var size = Math.random() * 8 + 4;
+          dot.style.cssText =
+            'position:fixed;width:' + size + 'px;height:' + size + 'px;' +
+            'background:' + colors[Math.floor(Math.random()*colors.length)] + ';' +
+            'border-radius:' + (Math.random()>.5 ? '50%' : '3px') + ';' +
+            'top:50%;left:50%;pointer-events:none;z-index:9999;' +
+            'transition:transform ' + (.8+Math.random()*.7) + 's ease,opacity 1s ease;opacity:1;';
+          document.body.appendChild(dot);
+          var angle = Math.random() * 2 * Math.PI;
+          var dist  = 100 + Math.random() * 240;
+          var dx = Math.cos(angle) * dist;
+          var dy = Math.sin(angle) * dist;
+          requestAnimationFrame(function() {
+            dot.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + (Math.random()*360) + 'deg)';
+            dot.style.opacity = '0';
+          });
+          setTimeout(function(){ dot.remove(); }, 1600);
+        })();
+      }
+    }
+  </script>
+</body>
+</html>
